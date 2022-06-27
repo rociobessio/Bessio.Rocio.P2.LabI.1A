@@ -340,7 +340,7 @@ int ll_containsAll(LinkedList* this,LinkedList* this2)//COMPARO Y ME FIJO SI EST
     	sizeThis2 = ll_len(this2);
     	for(int i=0;i<sizeThis2;i++)//recorro con el size de la segunda lista
     	{
-    		if(!ll_contains(this, ll_get(this, i)))
+    		if(!ll_contains(this, ll_get(this2, i)))
     		{
     			returnAux = 0;
     			break;//rompo xq ya comprobe que no esta contenido
@@ -504,9 +504,9 @@ LinkedList* ll_map(LinkedList* this, void* (*pFunc)(void* element))
 		{
 			sizeOfList = ll_len(this);
 			for(int i=0;i<sizeOfList;i++)
-			{
+			{//se debera de iterar todos los elementos de la lista
 				pElement = ll_get(this, i);
-				pElement = pFunc(pElement);
+				pElement = pFunc(pElement);//el retorno de pFunc se agrega a la lista resultado
 				if(pElement!=NULL)
 				{
 					ll_add(mappList, pElement);

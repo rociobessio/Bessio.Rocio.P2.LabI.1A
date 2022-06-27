@@ -4,6 +4,8 @@
  Alumna      : BESSIO ROCIO
  Division    : 1A
  Fecha       : 29/06
+ Parcial     : SEGUNDO PARCIAL
+ Materia     : LABORATORIO 1
  ============================================================================
  */
 
@@ -13,7 +15,7 @@
 
 #include "utn.h"
 #include "LinkedList.h"
-
+#include "controller.h"
 
 #define STATE_FILE_OPEN 1
 #define STATE_FILE_CLOSED 0
@@ -56,7 +58,8 @@ void pFunction(char* messageError1,char* messageError2,char* messageSucess,int* 
 		if (!pFunction(array))
 		{
 			printf("\n%s\n",messageError2);
-		} else
+		}
+		else
 		{
 			printf("\n%s\n",messageSucess);
 		}
@@ -66,32 +69,30 @@ void pFunction(char* messageError1,char* messageError2,char* messageSucess,int* 
 
 int main(void) {
 	setbuf(stdout,NULL);
+
 	srand(time(NULL));//semilla
 
-	//char opcion = 'n';
+	char opcion = 'n';
 	//int fileState = 0;
-	//char path[50000];
 	//int generated = 0;
+	//char path[8000];
 
-	//LinkedList* listaMovies = ll_newLinkedList(); //creo nueva lista
-	//LinkedList* mappedList;
-	//LinkedList* listaSorted;
+	LinkedList* listaPrincipal = ll_newLinkedList(); //creo nueva lista
 
-/*	if(listaMovies!=NULL)
+	if(listaPrincipal!=NULL)
 	{
-		if(ll_isEmpty(listaMovies)){//se verifica que la lista este vacia...
+		if(ll_isEmpty(listaPrincipal)){//se verifica que la lista este vacia...
 	   	    printf("\n[LISTA INICIALIZADA]");
 	    }
 
 		do
 		{
-			limpioPantalla();
 			switch(menu())
 			{
 				case 1://CARGAR ARCHIVO DE TEXTO
-					limpioPantalla();
-					getValidStringAlpha("\nINGRESA EL NOMBRE DEL ARCHIVO: ", "\n[VALORES INVALIDOS, REINTENTA]: ", path, 3, 15);
-					if(controller_loadFromText(path, listaMovies) == 1)
+				/*	limpioPantalla();
+					getValidStringAlpha("\nINGRESA EL NOMBRE DEL ARCHIVO: ", "\n[VALORES INVALIDOS, REINTENTA]: ", path, 3, 30);
+					if(controller_loadFromText(path, listaPrincipal) == 1)
 					{
 						printf("\nEL ARCHIVO FUE ABIERTO DE MANERA EXITOSA!\n");
 						fileState = 1;
@@ -99,72 +100,77 @@ int main(void) {
 					else
 					{
 						printf("\nOCURRIO UN ERROR AL INTENTAR ABRIR EL ARCHIVO!\n");
-					}
+					}*/
 					system("Pause");
 				break;
 				case 2://LISTAR LISTA CON VALORES CON 0s
 					limpioPantalla();
-					pFunction("\nPRIMERO DEBES DE CARGAR EL ARCHIVO!",
+				/*	pFunction("\nPRIMERO DEBES DE CARGAR EL ARCHIVO!",
 							"\nOCURRIO UN ERROR AL INTENTAR MOSTRAR LA LISTA, REINTENTA! ",
 							"\nLA LISTA FUE MOSTRADA EXITOSAMENTE!",
-							&fileState, STATE_FILE_CLOSED, listaMovies, controller_ListMovies);
+							&fileState, STATE_FILE_CLOSED, listaPrincipal, controller_ListMovies);*/
 					system("Pause");
 				break;
 				case 3://MAPPEAR VALORES
-					mappedList = ll_map(listaMovies, controller_CalcularTiempo);
-					if(mappedList!=NULL)
-					{
-						controller_ListMovies(mappedList);
-						generated = 1;
-					}
-					else
-					{
-						printf("\nOCURRIO UN ERROR AL INTENTAR MAPPEAR LA LISTA!");
-					}
+				/*	if(fileState == 1)
+				 	 {
+				 	 	listaPrincipal = ll_map(listaPrincipal, controller_CalcularTiempo);
+						if(listaPrincipal!=NULL)
+						{
+							controller_ListMovies(listaPrincipal);
+							generated = 1;
+						}
+						else
+						{
+							printf("\nOCURRIO UN ERROR AL INTENTAR MAPPEAR LA LISTA!");
+						}
+				 	 }
+				 	 else
+				 	 {
+				 	 	 printf("\nPRIMERO DEBES DE CARGAR EL ARCHIVO!");
+				 	 }*/
 					system("Pause");
 				break;
 				case 4://FILTRAR POR TIPO DE MOVIE
 					limpioPantalla();
-					if(generated==1)
+				/*	if(generated==1 || generated == 2)
 					{
 						pFunction("\nPRIMERO DEBES DE CARGAR EL ARCHIVO!",
 								"\nOCURRIO UN ERROR AL INTENTAR FILTRAR LA LISTA, REINTENTA! ",
 								"\nLA LISTA FUE FILTRADA EXITOSAMENTE!",
-								&fileState, STATE_FILE_CLOSED, mappedList, controller_filterByType);
+								&fileState, STATE_FILE_CLOSED, listaPrincipal, controller_filterByType);
 					}
 					else
 					{
 						printf("\nPRIMERO DEBES DE MAPPEAR LA LISTA\n");
-					}
+					}*/
 					system("Pause");
 				break;
-				case 5://SORT
-					if(generated==0)
+				case 5://SORT, ascendente de menor a mayor, descendente de mayor a menor...
+				/*	if(generated==0)
 					{
 						printf("\nPRIMERO DEBES DE MAPPEAR LA LISTA!\n");
 					}
 					else
 					{
-						listaSorted = ll_clone(mappedList);
-						if(listaSorted!=NULL)
+						if(listaPrincipal!=NULL)
 						{
-							ll_sortBy2Func(listaSorted, Movies_sortByStrGenre, Movies_sortByDuration, 1);
-							if(listaSorted!=NULL)
+							ll_sortBy2Func(listaPrincipal, Movies_sortByStrGenre, Movies_sortByDuration, 1);
+							if(listaPrincipal!=NULL)
 							{
-								controller_ListMovies(listaSorted);
+								controller_ListMovies(listaPrincipal);
 								generated =2;
 								printf("\nLA LISTA FUE SWAPPEADA EXITOSAMENTE!\n");
 							}
 						}
-					}
+					}*/
 					system("Pause");
 				break;
 				case 6://Guardar posiciones: Se deberá guardar el listado del punto anterior en un archivo de texto.
 					limpioPantalla();
-					if(fileState==1 && generated==2)
+				/*	if(fileState==1 && generated==2)
 					{
-						getValidStringAlpha("\nINGRESA EL NOMBRE DEL ARCHIVO A GUARDAR: ", "\n[VALORES INVALIDOS, REINTENTA]: ", path, 3, 15);
-						if(!controller_saveAsText(path, listaSorted))
+						if(!controller_saveAsText("Ordenada.txt", listaPrincipal))
 						{
 							fileState = 0;
 							printf("\nEL ARCHIVO FUE GUARDADO Y CERRADO CON EXITO!\n");
@@ -181,12 +187,12 @@ int main(void) {
 					else
 					{
 						printf("\nDEBES DE GENERAR LA LISTA SWAPPEADA PARA PODER GUARDAR EL ARHIVO!\n");
-					}
+					}*/
 					system("Pause");
 				break;
 				case 7://SALIR DE LA APP
 					limpioPantalla();
-					if(fileState!=0)
+				/*	if(fileState!=0)
 					{
 						printf("\nANTES DE SALIR DEBES DE GUARDAR EL ARCHIVO!\n");
 					}
@@ -196,22 +202,18 @@ int main(void) {
 						if(opcion=='s')
 						{
 							printf("DECIDIO CERRAR LA APLICACION.....\n");
-							//ll_deleteLinkedList(listaMovies);//borro la lista
-							//ll_deleteLinkedList(mappedList);//borro la lista
-							//ll_deleteLinkedList(listaSorted);//borro la lista
+							//ll_deleteLinkedList(listaPrincipal);//borro la lista
 						}
 						else
 						{
 							printf("DECIDIO SEGUIR USANDO LA APLICACION!\n");
 						}
-					}
+					}*/
 					system("Pause");
 				break;
 			}
 		}while(opcion!='s');
-	}*/
+	}
 
-
-	puts("!!!Hello World!!!"); /* prints !!!Hello World!!! */
 	return EXIT_SUCCESS;
 }
