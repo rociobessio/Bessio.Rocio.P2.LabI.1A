@@ -1,7 +1,7 @@
 /*
  ============================================================================
  Name        : 1A.c
- Alumna      : BESSIO ROCIO
+ Alumna      : BESSIO ROCIO SOLEDAD
  Division    : 1A
  Fecha       : 29/06
  Parcial     : SEGUNDO PARCIAL
@@ -53,7 +53,8 @@ void pFunction(char* messageError1,char* messageError2,char* messageSucess,int* 
 	if(flagForCompare==flagValue)
 	{
 		printf("\n%s\n",messageError1);
-	}else
+	}
+	else
 	{
 		if (!pFunction(array))
 		{
@@ -84,7 +85,6 @@ int main(void) {
 		if(ll_isEmpty(listaPrincipal)){//se verifica que la lista este vacia...
 	   	    printf("\n[LISTA INICIALIZADA]");
 	    }
-
 		do
 		{
 			switch(menu())
