@@ -9,7 +9,7 @@
 #endif /* INFORMES_H_ */
 
 /**
- * @fn int controller_showOptionMenuFilter()
+ * @fn int showOptionMenuFilter()
  * @brief muestra un menu de opciones para el filtrado de peliculas
  *
  * @return

@@ -67,7 +67,6 @@ void* controller_CalcularRating(void* pMovie);
 void* controller_CalcularGenero(void* pMovie);
 
 //FILTRO
-
 /**
  * @fn int controller_filterByGenre(LinkedList*)
  * @brief filtra a las peliculas por el genero elegido y las guarda en un archivo igual al original
