@@ -131,7 +131,7 @@ void* controller_CalcularRating(void* pMovie)
 {
 	int min = 10;
 	int max = 100;
-	float rating = -1;//puede ser float
+	float rating = -1;
 	eMovie* auxMovie = NULL;
 
 	if(pMovie!=NULL)
@@ -148,7 +148,7 @@ void* controller_CalcularGenero(void* pMovie)
 {
 	int min = 1;
 	int max = 4;
-	int genero = -1;//puede ser float
+	int genero = -1;
 	char desc[25];
 	eMovie* auxMovie = NULL;
 

@@ -10,7 +10,7 @@
 
 /**
  * @fn int parser_MoviesFromText(FILE*, LinkedList*)
- * @brief parsea los elementos que recibe del archivo que se abro¡io
+ * @brief parsea los elementos que recibe del archivo que se abrio
  *
  * @param pFile
  * @param pArrayMovies

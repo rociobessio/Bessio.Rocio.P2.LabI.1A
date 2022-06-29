@@ -153,7 +153,7 @@ int Movie_ShowOnlyOne(eMovie *eMovie);
 //SORT
 /**
  * @fn int Movie_sortByGenero(void*, void*)
- * @brief compara el genero de las peliculas
+ * @brief compara el genero de las peliculas para ordenarlas
  *
  * @param genero1
  * @param genero2
@@ -163,7 +163,7 @@ int Movie_sortByGenero(void* genero1,void* genero2);
 
 /**
  * @fn int Movie_sortByRating(void*, void*)
- * @brief compara el rating de las peliculas
+ * @brief compara el rating de las peliculas para ordenarlas
  *
  * @param rating1
  * @param rating2

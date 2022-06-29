@@ -22,6 +22,7 @@ int controller_saveAsText(char *path, LinkedList *this);
 /**
  * @fn int controller_saveAsCSV(FILE*, LinkedList*)
  * @brief guarda un archivo como un csv con encabezado para no pisar el primer elemento
+ * 		  al reabrirlo
  *
  * @param path
  * @param pArrayMovies
@@ -51,7 +52,7 @@ int controller_ListMovies(LinkedList* pArrayMovies);
 
 /**
  * @fn void controller_CalcularRating*(void*)
- * @brief calcula el rating de las peliculas
+ * @brief calcula el rating de las peliculas de forma aleatoria
  *
  * @param pMovie
  */
@@ -59,7 +60,7 @@ void* controller_CalcularRating(void* pMovie);
 
 /**
  * @fn void controller_CalcularGenero*(void*)
- * @brief calcula un numero random para las peliculas y les asigna un genero
+ * @brief calcula un numero aleatorio para las peliculas y les asigna un genero
  *
  * @param pMovie
  */
@@ -68,7 +69,7 @@ void* controller_CalcularGenero(void* pMovie);
 //FILTRO
 /**
  * @fn int controller_showOptionMenuFilter()
- * @brief muestra un menu de opciones
+ * @brief muestra un menu de opciones para el filtrado de peliculas
  *
  * @return
  */
@@ -77,7 +78,7 @@ int controller_showOptionMenuFilter();
 /**
  * @fn int controller_filterByGenre(LinkedList*)
  * @brief filtra a las peliculas por el genero elegido y las guarda en un archivo igual al original
- * (formato .csv)
+ * 		  (formato .csv)
  *
  * @param pArrayMovies
  * @return
