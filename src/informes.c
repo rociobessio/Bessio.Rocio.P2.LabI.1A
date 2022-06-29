@@ -7,4 +7,48 @@
 #include "utn.h"
 #include "LinkedList.h"
 #include "controller.h"
+#include "movie.h"
 
+int filterByDramaGenre(void* pElement)
+{
+	int todoOk = 0;
+
+	if(!strcmp(((eMovie*) pElement)->genero,"Drama"))//solo entra cuando devuelve 0, son iguales
+	{
+		todoOk = 1;//devuelve 1 si se agrega a la lista
+	}
+	return todoOk;
+}
+
+int filterByComediaGenre(void* pElement)
+{
+	int todoOk = 0;
+
+	if(!strcmp(((eMovie*) pElement)->genero,"Comedia"))//solo entra cuando devuelve 0, son iguales
+	{
+		todoOk = 1;//devuelve 1 si se agrega a la lista
+	}
+	return todoOk;
+}
+
+int filterByAccionGenre(void* pElement)
+{
+	int todoOk = 0;
+
+	if(!strcmp(((eMovie*) pElement)->genero,"Accion"))//solo entra cuando devuelve 0, son iguales
+	{
+		todoOk = 1;//devuelve 1 si se agrega a la lista
+	}
+	return todoOk;
+}
+
+int filterByTerrorGenre(void* pElement)
+{
+	int todoOk = 0;
+
+	if(!strcmp(((eMovie*) pElement)->genero,"Terror"))//solo entra cuando devuelve 0, son iguales
+	{
+		todoOk = 1;//devuelve 1 si se agrega a la lista
+	}
+	return todoOk;
+}

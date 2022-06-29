@@ -16,6 +16,7 @@
 #include "utn.h"
 #include "LinkedList.h"
 #include "controller.h"
+#include "movie.h"
 
 #define STATE_FILE_OPEN 1
 #define STATE_FILE_CLOSED 0
@@ -31,18 +32,19 @@ int menu()
 
 	printf("\n__________________________________________________________________________");
 	printf("\n                                                                          |");
-	printf("\n                       BIENVENIDO A                                       |\n");
+	printf("\n                       BIENVENIDO A CINEMARK                              |\n");
 	printf("__________________________________________________________________________|\n");
-	printf("______________________________________________________________________");
-	printf("\n|1)CARGAR ARCHIVO EN MODO TEXTO                                       |\n|"
-			"2)IMPRIMIR LISTA                                                     |\n|"
-			"3)ASIGNAR TIEMPOS                                                    |\n|"
-			"4)FILTRAR POR TIPO                                                   |\n|"
-			"5)MOSTRAR DURACIONES                                                 |\n|"
-			"6)GUARDAR ARCHIVO EN MODO TEXTO                                      |\n|"
-			"7)EXIT APP                                                           |\n");
-	printf("|_____________________________________________________________________|");
-	utn_getNumero(&opcion, "\nINGRESA UNA OPCION: ", "\n[VALOR INVALIDO, REINTENTA.] ", 1, 7, 10);
+	printf("_____________________________________________________________");
+	printf("\n|1)CARGAR ARCHIVO                                            |\n|"
+			"2)IMPRIMIR LISTA                                            |\n|"
+			"3)ASIGNAR RATING                                            |\n|"
+			"4)ASIGNAR GENERO                                            |\n|"
+			"5)FILTRAR POR GENERO                                        |\n|"
+			"6)ORDENAR PELICULAS                                         |\n|"
+			"7)GUARDAR PELICULAS                                         |\n|"
+			"8)EXIT APP                                                  |\n");
+	printf("|____________________________________________________________|");
+	utn_getNumero(&opcion, "\nINGRESA UNA OPCION: ", "\n[VALOR INVALIDO, REINTENTA.] ", 1, 8, 10);
 	return opcion;
 }
 
@@ -53,8 +55,7 @@ void pFunction(char* messageError1,char* messageError2,char* messageSucess,int* 
 	if(flagForCompare==flagValue)
 	{
 		printf("\n%s\n",messageError1);
-	}
-	else
+	}else
 	{
 		if (!pFunction(array))
 		{
@@ -74,9 +75,9 @@ int main(void) {
 	srand(time(NULL));//semilla
 
 	char opcion = 'n';
-	//int fileState = 0;
-	//int generated = 0;
-	//char path[8000];
+	int fileState = 0;
+	int generated = 0;
+	char path[8000];
 
 	LinkedList* listaPrincipal = ll_newLinkedList(); //creo nueva lista
 
@@ -89,32 +90,39 @@ int main(void) {
 		{
 			switch(menu())
 			{
-				case 1://CARGAR ARCHIVO DE TEXTO
-				/*	limpioPantalla();
-					getValidStringAlpha("\nINGRESA EL NOMBRE DEL ARCHIVO: ", "\n[VALORES INVALIDOS, REINTENTA]: ", path, 3, 30);
-					if(controller_loadFromText(path, listaPrincipal) == 1)
+				case 1://CARGAR ARCHIVO
+					limpioPantalla();
+					if(fileState==1)
 					{
-						printf("\nEL ARCHIVO FUE ABIERTO DE MANERA EXITOSA!\n");
-						fileState = 1;
+						printf("\n[YA HAY UN ARCHIVO ABIERTO!]\n");
 					}
 					else
 					{
-						printf("\nOCURRIO UN ERROR AL INTENTAR ABRIR EL ARCHIVO!\n");
-					}*/
+						getValidStringAlpha("\nINGRESA EL NOMBRE DEL ARCHIVO: ", "\n[VALORES INVALIDOS, REINTENTA]: ", path, 3, 30);
+						if(controller_loadFromText(path, listaPrincipal) == 1)
+						{
+							printf("\nEL ARCHIVO FUE ABIERTO CON EXITO!\n");
+							fileState = 1;
+						}
+						else
+						{
+							printf("\n[OCURRIO UN ERROR AL INTENTAR ABRIR EL ARCHIVO!]\n");
+						}
+					}
 					system("Pause");
 				break;
 				case 2://LISTAR LISTA CON VALORES CON 0s
 					limpioPantalla();
-				/*	pFunction("\nPRIMERO DEBES DE CARGAR EL ARCHIVO!",
+					pFunction("\nPRIMERO DEBES DE CARGAR EL ARCHIVO!",
 							"\nOCURRIO UN ERROR AL INTENTAR MOSTRAR LA LISTA, REINTENTA! ",
-							"\nLA LISTA FUE MOSTRADA EXITOSAMENTE!",
-							&fileState, STATE_FILE_CLOSED, listaPrincipal, controller_ListMovies);*/
+							"\nLA LISTA FUE MOSTRADA CON EXITO!",
+							&fileState, STATE_FILE_CLOSED, listaPrincipal, controller_ListMovies);
 					system("Pause");
 				break;
-				case 3://MAPPEAR VALORES
-				/*	if(fileState == 1)
+				case 3://MAPPEAR VALORES ASIGNAR RATING
+					if(fileState == 1)
 				 	 {
-				 	 	listaPrincipal = ll_map(listaPrincipal, controller_CalcularTiempo);
+				 	 	listaPrincipal = ll_map(listaPrincipal, controller_CalcularRating);
 						if(listaPrincipal!=NULL)
 						{
 							controller_ListMovies(listaPrincipal);
@@ -122,53 +130,77 @@ int main(void) {
 						}
 						else
 						{
-							printf("\nOCURRIO UN ERROR AL INTENTAR MAPPEAR LA LISTA!");
+							printf("\n[OCURRIO UN ERROR AL INTENTAR MAPPEAR LA LISTA!]\n");
 						}
 				 	 }
 				 	 else
 				 	 {
-				 	 	 printf("\nPRIMERO DEBES DE CARGAR EL ARCHIVO!");
-				 	 }*/
+				 	 	 printf("\n[PRIMERO DEBES DE CARGAR EL ARCHIVO!]\n");
+				 	 }
 					system("Pause");
 				break;
-				case 4://FILTRAR POR TIPO DE MOVIE
-					limpioPantalla();
-				/*	if(generated==1 || generated == 2)
-					{
-						pFunction("\nPRIMERO DEBES DE CARGAR EL ARCHIVO!",
-								"\nOCURRIO UN ERROR AL INTENTAR FILTRAR LA LISTA, REINTENTA! ",
-								"\nLA LISTA FUE FILTRADA EXITOSAMENTE!",
-								&fileState, STATE_FILE_CLOSED, listaPrincipal, controller_filterByType);
-					}
-					else
-					{
-						printf("\nPRIMERO DEBES DE MAPPEAR LA LISTA\n");
-					}*/
-					system("Pause");
-				break;
-				case 5://SORT, ascendente de menor a mayor, descendente de mayor a menor...
-				/*	if(generated==0)
-					{
-						printf("\nPRIMERO DEBES DE MAPPEAR LA LISTA!\n");
-					}
-					else
-					{
-						if(listaPrincipal!=NULL)
-						{
-							ll_sortBy2Func(listaPrincipal, Movies_sortByStrGenre, Movies_sortByDuration, 1);
+				case 4://MAPPEAR VALORES ASIGNAR GENERO
+						if(fileState == 1 && generated == 1)
+					 	 {
+					 	 	listaPrincipal = ll_map(listaPrincipal, controller_CalcularGenero);
 							if(listaPrincipal!=NULL)
 							{
 								controller_ListMovies(listaPrincipal);
-								generated =2;
-								printf("\nLA LISTA FUE SWAPPEADA EXITOSAMENTE!\n");
+								generated = 2;
 							}
-						}
-					}*/
+							else
+							{
+								printf("\n[OCURRIO UN ERROR AL INTENTAR MAPPEAR LA LISTA!]");
+							}
+					 	 }
+					 	 else if(fileState==0)
+					 	 {
+					 	 	 printf("\n[PRIMERO DEBES DE CARGAR EL ARCHIVO!]\n");
+					 	 }
+					 	 else
+					 	 {
+					 		printf("\n[PRIMERO DEBES DE ASIGNAR EL RATING A LAS PELICULAS DE LA LISTA]\n");
+					 	 }
+						system("Pause");
+				break;
+				case 5://FILTRAR POR GENERO DE MOVIE
+					limpioPantalla();
+					if(generated==2 || generated == 3)
+					{
+						pFunction("\nPRIMERO DEBES DE CARGAR EL ARCHIVO!",
+								"\nOCURRIO UN ERROR AL INTENTAR FILTRAR LA LISTA, REINTENTA! ",
+								"\nLA LISTA FUE FILTRADA CON EXITO!",
+								&fileState, STATE_FILE_CLOSED, listaPrincipal, controller_filterByGenre);
+					}
+					else
+					{
+						printf("\n[PRIMERO DEBES DE ASIGNAR EL RATING DE LAS PELICULAS Y SU GENERO!]\n");
+					}
 					system("Pause");
 				break;
-				case 6://Guardar posiciones: Se deberá guardar el listado del punto anterior en un archivo de texto.
+				case 6://SORT, ascendente de menor a mayor, descendente de mayor a menor...
+					if(generated == 2)
+					{
+						if(listaPrincipal!=NULL)
+						{
+							ll_sortBy2Func(listaPrincipal, Movie_sortByGenero, Movie_sortByRating, 0);
+							if(listaPrincipal!=NULL)
+							{
+								controller_ListMovies(listaPrincipal);
+								generated =3;
+								printf("\n[LA LISTA FUE SWAPPEADA CON EXITO!]\n");
+							}
+						}
+					}
+					else
+					{
+						printf("\n[PRIMERO DEBES DE ASIGNAR EL RATING DE LAS PELICULAS Y SU GENERO!]\n");
+					}
+					system("Pause");
+				break;
+				case 7://Guardar posiciones: Se deberá guardar el listado del punto anterior en un archivo de texto.
 					limpioPantalla();
-				/*	if(fileState==1 && generated==2)
+					if(fileState==1 && generated==3)
 					{
 						if(!controller_saveAsText("Ordenada.txt", listaPrincipal))
 						{
@@ -177,24 +209,24 @@ int main(void) {
 						}
 						else
 						{
-							printf("\nOCURRIO UN ERROR AL INTENTAR GUARDAR EL ARCHIVO!\n");
+							printf("\n[OCURRIO UN ERROR AL INTENTAR GUARDAR EL ARCHIVO!]\n");
 						}
 					}
 					else if(fileState==0)
 					{
-						printf("\nPRIMERO DEBES DE CARGAR EL ARCHIVO!\n");
+						printf("\n[PRIMERO DEBES DE CARGAR EL ARCHIVO!]\n");
 					}
 					else
 					{
-						printf("\nDEBES DE GENERAR LA LISTA SWAPPEADA PARA PODER GUARDAR EL ARHIVO!\n");
-					}*/
+						printf("\n[DEBES DE GENERAR LA LISTA SWAPPEADA PARA PODER GUARDAR EL ARHIVO!]\n");
+					}
 					system("Pause");
 				break;
-				case 7://SALIR DE LA APP
+				case 8://SALIR DE LA APP
 					limpioPantalla();
-				/*	if(fileState!=0)
+					if(fileState!=0)
 					{
-						printf("\nANTES DE SALIR DEBES DE GUARDAR EL ARCHIVO!\n");
+						printf("\n[ANTES DE SALIR DEBES DE GUARDAR EL ARCHIVO!]\n");
 					}
 					else
 					{
@@ -202,13 +234,13 @@ int main(void) {
 						if(opcion=='s')
 						{
 							printf("DECIDIO CERRAR LA APLICACION.....\n");
-							//ll_deleteLinkedList(listaPrincipal);//borro la lista
+							ll_deleteLinkedList(listaPrincipal);//borro la lista
 						}
 						else
 						{
 							printf("DECIDIO SEGUIR USANDO LA APLICACION!\n");
 						}
-					}*/
+					}
 					system("Pause");
 				break;
 			}

@@ -7,3 +7,13 @@
 
 
 #endif /* PARSER_H_ */
+
+/**
+ * @fn int parser_MoviesFromText(FILE*, LinkedList*)
+ * @brief parsea los elementos que recibe del archivo que se abro¡io
+ *
+ * @param pFile
+ * @param pArrayMovies
+ * @return
+ */
+int parser_MoviesFromText(FILE* pFile , LinkedList* pArrayMovies);
