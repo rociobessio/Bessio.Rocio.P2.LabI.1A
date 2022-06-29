@@ -180,24 +180,8 @@ void* controller_CalcularGenero(void* pMovie)
 	return auxMovie;
 }
 
-int controller_showOptionMenuFilter()
-{
-	int opcion;
-	printf("\n___________________________________________________");
-	printf("\n                                                   |");
-	printf("\n            FILTRAR MOVIES POR GENERO              |\n");
-	printf("___________________________________________________|\n");
-	printf("__________________________");
-	printf("\n|1)GENERO DRAMA           |\n|"
-			"2)GENERO COMEDIA         |\n|"
-			"3)GENERO ACCION          |\n|"
-			"4)GENERO TERROR          |\n");
-	printf("|_________________________|");
-	utn_getNumero(&opcion, "\nINGRESA UNA OPCION: ", "\n[VALOR INVALIDO, REINTENTA]: ", 1,4, 10);
 
-	return opcion;
-}
-
+//FILTRADO
 
 int controller_filterByGenre(LinkedList* pArrayMovies)
 {
@@ -207,7 +191,7 @@ int controller_filterByGenre(LinkedList* pArrayMovies)
 
 	if(pArrayMovies!=NULL)
 	{
-		switch(controller_showOptionMenuFilter())
+		switch(showOptionMenuFilter())
 		{
 			case 1://DRAMA
 				filteredList = ll_filter(pArrayMovies,filterByDramaGenre);

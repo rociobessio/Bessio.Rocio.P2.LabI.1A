@@ -9,6 +9,25 @@
 #include "controller.h"
 #include "movie.h"
 
+int showOptionMenuFilter()
+{
+	int opcion;
+	printf("\n___________________________________________________");
+	printf("\n                                                   |");
+	printf("\n            FILTRAR MOVIES POR GENERO              |\n");
+	printf("___________________________________________________|\n");
+	printf("__________________________");
+	printf("\n|1)GENERO DRAMA           |\n|"
+			"2)GENERO COMEDIA         |\n|"
+			"3)GENERO ACCION          |\n|"
+			"4)GENERO TERROR          |\n");
+	printf("|_________________________|");
+	utn_getNumero(&opcion, "\nINGRESA UNA OPCION: ", "\n[VALOR INVALIDO, REINTENTA]: ", 1,4, 10);
+
+	return opcion;
+}
+
+
 int filterByDramaGenre(void* pElement)
 {
 	int todoOk = 0;

@@ -67,13 +67,6 @@ void* controller_CalcularRating(void* pMovie);
 void* controller_CalcularGenero(void* pMovie);
 
 //FILTRO
-/**
- * @fn int controller_showOptionMenuFilter()
- * @brief muestra un menu de opciones para el filtrado de peliculas
- *
- * @return
- */
-int controller_showOptionMenuFilter();
 
 /**
  * @fn int controller_filterByGenre(LinkedList*)

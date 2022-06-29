@@ -7,6 +7,16 @@
 
 
 #endif /* INFORMES_H_ */
+
+/**
+ * @fn int controller_showOptionMenuFilter()
+ * @brief muestra un menu de opciones para el filtrado de peliculas
+ *
+ * @return
+ */
+int showOptionMenuFilter();
+
+
 /**
  * @fn int filterByTerrorGenre(void*)
  * @brief filtra a las peliculas por genero de terror

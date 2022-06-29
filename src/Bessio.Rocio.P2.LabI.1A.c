@@ -126,6 +126,7 @@ int main(void) {
 						if(listaPrincipal!=NULL)
 						{
 							controller_ListMovies(listaPrincipal);
+							printf("\n[RATINGS ASIGNADOS CON EXITO!]\n");
 							generated = 1;
 						}
 						else
@@ -146,6 +147,7 @@ int main(void) {
 							if(listaPrincipal!=NULL)
 							{
 								controller_ListMovies(listaPrincipal);
+								printf("\n[GENEROS ASIGNADOS CON EXITO!]\n");
 								generated = 2;
 							}
 							else
