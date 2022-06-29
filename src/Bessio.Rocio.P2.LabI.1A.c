@@ -200,7 +200,7 @@ int main(void) {
 					}
 					system("Pause");
 				break;
-				case 7://Guardar posiciones: Se deberá guardar el listado del punto anterior en un archivo de texto.
+				case 7://Guardar peliculas: Se deberá guardar el listado del punto anterior en un archivo de texto.
 					limpioPantalla();
 					if(fileState==1 && generated==3)
 					{
